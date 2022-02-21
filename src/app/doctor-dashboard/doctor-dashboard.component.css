@@ -1,0 +1,22 @@
+.Main-Heading{
+    margin-left: 60px;
+}
+.Add-Button{
+    margin-right: 75px;
+}
+.Table-Heading{
+  /* margin-left: 350px; */
+     text-indent: 60px;
+}
+.Table-Data{
+    text-indent: 60px;  
+}
+
+input.ng-invalid.ng-touched{
+    border-color: red;
+}
+input.ng-valid{
+    border-color: green;
+}
+
+/* media query css start here */

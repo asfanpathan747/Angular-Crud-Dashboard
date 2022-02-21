@@ -1,0 +1,92 @@
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h2 class="text-light Main-Heading">Doctor Dashboard Records</h2>
+        <div class="d-flex">
+          <button class="btn btn-info"><a routerLink="/users" >Users</a></button>
+          
+          <button class="btn btn-info mx-3"><a routerLink="/userslist" >UsersList</a></button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success Add-Button">Add Records</button>
+        </div>        
+    </div>
+</nav>
+
+<!-- table code start here -->
+<table class="table mt-3 Main-Table">
+    <thead>
+        <tr class="Table-Heading">
+            <th>Doctor ID</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email ID</th>
+            <th>Mobile No</th>
+            <th>Salary</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody class="Table-Data">
+        <tr *ngFor="let item of doctorData">
+            <td>{{item.id}}</td>
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.phone}}</td>
+            <td>{{item.salary}}</td>           
+            <td>
+                <button (click)="editDoctor(item)" class="btn btn-info"   type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                <button class="btn btn-danger mx-4" (click)="deleteDoctor(item.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- dialog box code here -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Doctor Record</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+            <form [formGroup]="formvalue" #regForm="ngForm" (ngSubmit)="(regForm)">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">First Name</label>
+                  <input type="text" formControlName="firstName" class="form-control" name="FirstName" required name="First Name" ngModel #email>
+                  <span>*FirstName is Required</span>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Last Name</label>
+                  <input type="text" formControlName="lastName" class="form-control" name="LastName" required ngModel>
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Email ID</label>
+                  <input type="email" formControlName="email" class="form-control" name="email" required ngModel >
+                
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Mobile No</label>
+                  <input type="text" formControlName="phone" class="form-control" name="mobile" required ngModel>
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Salary</label>
+                  <input type="text" formControlName="salary" class="form-control" name="salary" required ngModel>
+                </div>
+                
+              </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="submit" id="Register" class="btn btn-primary" (click)="postdoctorDetails()" [disabled]="!regForm.valid">Add</button>
+          <button type="button" class="btn btn-primary" (click)="  updateallDoctor()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <app-users></app-users> -->
